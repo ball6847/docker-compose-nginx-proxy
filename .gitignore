@@ -1,5 +1,0 @@
-certs/*
-share/*
-vhost.d/*
-
-!.gitkeep
