@@ -20,8 +20,6 @@ services:
     restart: unless-stopped
     environment:
       DEFAULT_EMAIL: ${DEFAULT_EMAIL}
-    volumes_from:
-      - nginx-proxy
     volumes:
       - /etc/localtime/:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
