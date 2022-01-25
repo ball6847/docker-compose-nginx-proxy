@@ -16,7 +16,7 @@ services:
       - ./conf.d:/etc/nginx/conf.d
       - ./vhost.d:/etc/nginx/vhost.d
   nginx-proxy-acme:
-    image: nginxproxy/acme-companion
+    image: nginxproxy/acme-companion:2.1
     restart: unless-stopped
     environment:
       DEFAULT_EMAIL: ${DEFAULT_EMAIL}
