@@ -14,6 +14,7 @@ services:
       - /etc/localtime/:/etc/localtime:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
       - ./conf.d:/etc/nginx/conf.d
       - ./vhost.d:/etc/nginx/vhost.d
   nginx-proxy-acme:
