@@ -6,13 +6,31 @@ services:
     restart: unless-stopped
     ports:
       - 80:80
+      - 443:443
     networks:
       - nginx-proxy
     volumes:
       - /etc/localtime/:/etc/localtime:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - certs:/etc/nginx/certs
       - ./conf.d:/etc/nginx/conf.d
       - ./vhost.d:/etc/nginx/vhost.d
+  nginx-proxy-acme:
+    image: nginxproxy/acme-companion
+    restart: unless-stopped
+    environment:
+      DEFAULT_EMAIL: ${DEFAULT_EMAIL}
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - /etc/localtime/:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - acme:/etc/acme.sh
+      - certs:/etc/nginx/certs:rw
+
+volumes:
+  certs:
+  acme:
 
 networks:
   nginx-proxy:
